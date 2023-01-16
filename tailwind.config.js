@@ -13,6 +13,9 @@ module.exports = {
             maxWidth: {
                 "2xs": "17rem",
             },
+            margin: {
+                18: "4.5rem",
+            },
             transitionProperty: {
                 translate: "translate",
             },

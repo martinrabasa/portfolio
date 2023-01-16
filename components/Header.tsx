@@ -15,7 +15,7 @@ const Header = () => {
                 <nav
                     className={`${
                         isNavOpen
-                            ? "fixed inset-0 w-full h-screen bg-neutral-900 mt-20 z-10 overflow-scroll"
+                            ? "fixed inset-0 w-full h-screen mt-18 py-6 z-10 overflow-scroll bg-neutral-100 border-t border-neutral-200 dark:bg-neutral-900"
                             : "hidden"
                     } lg:block`}
                 >
