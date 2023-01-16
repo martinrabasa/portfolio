@@ -51,13 +51,13 @@ const Home = ({ projects }: HomeProps) => {
                         <span>I&apos;m a front-end developer.</span>
                     </div>
                     <p className="text-lg leading-8 px-3 sm:px-8 md:px-0">I am self-taught, constantly seeking out new ways to improve my skills and stay up-to-date with the latest technologies. I have a strong background in problem-solving and an eye for detail. My pas­sion lies in build­ing web in­fra­struc­ture that&apos;s both scal­able and per­for­mant.</p>
-                    <p className="text-lg leading-8 px-3 sm:px-8 md:px-0 hidden">Specif­i­cal­ly, I&apos;m a full-stack web de­vel­op­er spe­cial­iz­ing in both fron­tend tech­nolo­gies and serv­er-side script­ing (I&apos;ve also dab­bled in mo­bile de­vel­op­ment among oth­er things). My pas­sion lies in build­ing web in­fra­struc­ture that&apos;s both scal­able and per­for­mant.</p>
                     <div className="flex gap-6">
                         <a
                             className="hover:text-neutral-700 dark:hover:text-violet-300"
                             href="https://github.com/martinrabasa"
                             target="_blank"
                             rel="noreferrer"
+                            aria-label="Martin's Github"
                         >
                             <svg
                                 className="h-6 lg:h-7"
@@ -73,6 +73,7 @@ const Home = ({ projects }: HomeProps) => {
                             href="https://github.com/martinrabasa"
                             target="_blank"
                             rel="noreferrer"
+                            aria-label="Martin's LinkedIn"
                         >
                             <svg
                                 className="h-6 lg:h-7"

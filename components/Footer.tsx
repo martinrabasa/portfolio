@@ -34,6 +34,7 @@ const Footer = () => {
                             href="https://github.com/martinrabasa"
                             target="_blank"
                             rel="noreferrer"
+                            aria-label="Martin's Github"
                         >
                             <svg
                                 className="h-7"
@@ -49,6 +50,7 @@ const Footer = () => {
                             href="https://github.com/astrank"
                             target="_blank"
                             rel="noreferrer"
+                            aria-label="Martin's LinkedIn"
                         >
                             <svg
                                 className="h-7"
@@ -65,6 +67,7 @@ const Footer = () => {
                             martinrabasa@gmail.com
                         </span>
                         <button
+                            aria-label="Copy email to clipboard"
                             className="bg-indigo-100 text-neutral-900 rounded p-1 active:-translate-y-0.5 duration-100 dark:hover:bg-violet-300"
                             onClick={() =>
                                 copyToClipboard("martinrabasa@gmail.com")
