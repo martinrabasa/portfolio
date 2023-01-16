@@ -9,13 +9,14 @@ const Header = () => {
     return (
         <header className="flex justify-between max-w-4xl mx-auto font-bold py-6">
             <div className="flex gap-6 ml-4">
-                <Link className="text-blue-400 dark:text-violet-300" href="/">
+                <Link className="text-blue-400 dark:text-violet-300" href="/" aria-label="Home">
                     Martín Rabasa
                 </Link>
                 <nav
+                    aria-label="Main navigation"
                     className={`${
                         isNavOpen
-                            ? "fixed inset-0 w-full h-screen mt-18 py-6 z-10 overflow-scroll bg-neutral-100 border-t border-neutral-200 dark:bg-neutral-900"
+                            ? "fixed inset-0 w-full h-screen mt-18 py-6 z-10 overflow-scroll bg-neutral-100 border-t border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800"
                             : "hidden"
                     } lg:block`}
                 >
@@ -46,6 +47,7 @@ const Header = () => {
                     <button
                         className="active:-translate-y-0.5 duration-100 lg:block"
                         onClick={() => setLightTheme()}
+                        aria-label="Theme switcher"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -66,6 +68,7 @@ const Header = () => {
                     <button
                         className="active:-translate-y-0.5 duration-100 lg:block"
                         onClick={() => setDarkTheme()}
+                        aria-label="Theme switcher"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +92,7 @@ const Header = () => {
                     }`}
                     type="button"
                     onClick={() => toggleNav(!isNavOpen)}
+                    aria-label="Menu"
                 >
                     <span className="hamburger_box">
                         <span className="hamburger_inner bg-neutral-800 after:bg-neutral-800 before:bg-neutral-800 dark:bg-indigo-100 dark:after:bg-indigo-100 dark:before:bg-indigo-100"></span>
