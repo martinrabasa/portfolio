@@ -130,7 +130,7 @@ const Footer = () => {
                         ></textarea>
                     </div>
                     <button
-                        className="py-2 px-3 mt-2 bg-indigo-100 self-start rounded text-neutral-800 font-bold dark:hover:bg-violet-300"
+                        className="py-2 px-3 mt-2 bg-indigo-100 self-center rounded text-neutral-800 font-bold lg:self-start dark:hover:bg-violet-300"
                         type="submit"
                     >
                         Send

@@ -244,10 +244,10 @@ const Home = ({ projects }: HomeProps) => {
                                 </defs>
                             </svg>
                         </div>
-                        <div title="Figma">
+                        <div title="Figma" className="hidden">
                             <svg
                                 id="figma"
-                                className="h-10 w-10 md:hidden"
+                                className="h-10 w-10"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 200 300"
                             >
@@ -275,6 +275,18 @@ const Home = ({ projects }: HomeProps) => {
                                     fill="#1abcfe"
                                     d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"
                                     className="st4"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div title="Vue.js" className="md:hidden">
+                            <svg className="h-10 w-10" viewBox="0 0 128 128">
+                                <path
+                                    fill="#42b883"
+                                    d="M78.8 10L64 35.4 49.2 10H0l64 110 64-110H78.8z"
+                                ></path>
+                                <path
+                                    fill="#35495e"
+                                    d="M78.8 10L64 35.4 49.2 10H25.6L64 76l38.4-66H78.8z"
                                 ></path>
                             </svg>
                         </div>
