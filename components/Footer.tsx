@@ -101,6 +101,7 @@ const Footer = () => {
                     name="contacto"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
                 >
+                    <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="name">
                             {t.name.label}
