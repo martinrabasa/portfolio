@@ -49,6 +49,7 @@ const Project = ({
                     href={github}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label="Github Repository"
                 >
                     <svg
                         className="h-5"

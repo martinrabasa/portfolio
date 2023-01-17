@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { useTheme } from "../utils/ThemeProvider";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import es from "../locales/es";
 
 const Header = () => {
     const { setLightTheme, setDarkTheme, theme } = useTheme();
     const [isNavOpen, toggleNav] = useState<boolean>(false);
+    const router = useRouter();
+    const t = router.locale === "es" ? es : en;
+
+    const changeLanguage = (locale: string) => {
+        router.push('/', '/', { locale: locale })
+    }
 
     return (
         <header className="flex justify-between max-w-4xl mx-auto font-bold py-6">
             <div className="flex gap-6 ml-4">
                 <Link className="text-blue-400 dark:text-violet-300" href="/" aria-label="Home">
-                    Martín Rabasa
+                    {`${t.name.first} ${t.name.last}`}
                 </Link>
                 <nav
                     aria-label="Main navigation"
@@ -26,23 +35,27 @@ const Header = () => {
                                 onClick={() => toggleNav(false)}
                                 href="#projects"
                             >
-                                Projects
+                                {t.projects.label}
                             </a>
                         </li>
                         <li className="dark:hover:text-violet-300">
                             <a onClick={() => toggleNav(false)} href="#skills">
-                                Skills
+                                {t.skills.label}
                             </a>
                         </li>
                         <li className="dark:hover:text-violet-300">
                             <a onClick={() => toggleNav(false)} href="#contact">
-                                Contact
+                                {t.contact}
                             </a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div className="flex items-center gap-4 sm:gap-6">
+                {/* <select className="bg-transparent cursor-pointer hidden lg:block" onChange={(e) => changeLanguage(e.target.value)} defaultValue={router.locale}>
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                </select> */}
                 {theme == "dark" ? (
                     <button
                         className="active:-translate-y-0.5 duration-100 lg:block"

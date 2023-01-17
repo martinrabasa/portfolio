@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
+import en from "../locales/en";
+import es from "../locales/es";
 import Project from "../components/Project";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Project as ProjectType } from "../types/Project";
 
-type HomeProps = {
-    projects: ProjectType[];
-};
-
-const Home = ({ projects }: HomeProps) => {
+const Home = () => {
     const [scrollPosition, setSrollPosition] = useState<number>(0);
     const [showToTopBtn, setShowToTopBtn] = useState<boolean>(false);
+    const { locale } = useRouter();
+    const t = locale === "es" ? es : en;
 
     const handleToTopBtn = () => {
         const position = window.pageYOffset;
@@ -34,7 +34,7 @@ const Home = ({ projects }: HomeProps) => {
     return (
         <div className="relative text-neutral-800 bg-neutral-100 dark:bg-neutral-900 dark:text-indigo-100 min-h-screen">
             <Head>
-                <title>Martín Rabasa — Developer</title>
+                <title>{`${t.name.first} ${t.name.last} — Developer`}</title>
                 <meta name="description" content="Portfolio" />
                 <link
                     rel="icon"
@@ -47,10 +47,10 @@ const Home = ({ projects }: HomeProps) => {
             <main className="w-full max-w-4xl mx-auto">
                 <section className="max-w-2xl text-center flex flex-col items-center gap-10 mt-20 mx-auto">
                     <div className="flex flex-col items-center gap-3 text-3xl font-bold md:text-5xl dark:text-indigo-100">
-                        <h1>Hey, I&apos;m <span className="text-blue-400 dark:text-violet-300">Martín</span>. 👋</h1>
-                        <span>I&apos;m a front-end developer.</span>
+                        <h1>{`${t.greeting} `} <span className="text-blue-400 dark:text-violet-300">{t.name.first}</span>. 👋</h1>
+                        <span>{t.occupation}</span>
                     </div>
-                    <p className="text-lg leading-8 px-3 sm:px-8 md:px-0">I am self-taught, constantly seeking out new ways to improve my skills and stay up-to-date with the latest technologies. I have a strong background in problem-solving and an eye for detail. My pas­sion lies in build­ing web in­fra­struc­ture that&apos;s both scal­able and per­for­mant.</p>
+                    <p className="text-lg leading-8 px-3 sm:px-8 md:px-0">{t.p1}</p>
                     <div className="flex gap-6">
                         <a
                             className="hover:text-neutral-700 dark:hover:text-violet-300"
@@ -87,8 +87,8 @@ const Home = ({ projects }: HomeProps) => {
                     </div>
                 </section>
                 <section id="projects" className="grid grid-cols-1 gap-y-16 items-start place-items-center mx-3 mt-10 pt-10 md:grid-cols-2 lg:grid-cols-3 lg:mx-0">
-                    {projects &&
-                        projects.map((project) => (
+                    {t.projects.projects &&
+                        t.projects.projects.map((project) => (
                             <Project
                                 key={project.url}
                                 image={project.image}
@@ -104,8 +104,8 @@ const Home = ({ projects }: HomeProps) => {
                     className="flex flex-col items-center text-center gap-6 mt-10 pt-10"
                     id="skills"
                 >
-                    <h2 className="text-2xl font-bold">Skills</h2>
-                    <p className="max-w-lg px-4 leading-7">This is my current stack. I have also worked with C#, .NET, Vue and PostgreSQL in some projects.</p>
+                    <h2 className="text-2xl font-bold">{t.skills.label}</h2>
+                    <p className="max-w-lg px-4 leading-7">{t.skills.description}</p>
                     <div className="grid grid-cols-3 gap-8 justify-center my-10 place-items-center text-neutral-900 dark:text-neutral-200 md:grid-cols-4 max-w-md">
                         <div title="CSS">
                             <svg
@@ -307,16 +307,6 @@ const Home = ({ projects }: HomeProps) => {
             <Footer />
         </div>
     );
-};
-
-export const getStaticProps = async () => {
-    const projects = await import(`../public/data.json`).then(
-        (res) => res.default
-    );
-
-    return {
-        props: { projects },
-    };
 };
 
 export default Home;

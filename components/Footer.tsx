@@ -1,13 +1,18 @@
 import { useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import es from "../locales/es";
 
 const Footer = () => {
     const [toastMessage, setToastMessage] = useState<string>("");
     const [showingToast, setShowingToast] = useState<boolean>(false);
+    const { locale } = useRouter();
+    const t = locale === "es" ? es : en;
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
-        toggleToast("Text copied to clipboard");
+        toggleToast(t.clipboard);
     };
 
     const toggleToast = (message: string) => {
@@ -18,15 +23,15 @@ const Footer = () => {
     return (
         <footer
             id="contact"
-            className="bg-neutral-900 text-neutral-100 border-t border-neutral-800 dark:text-indigo-100"
+            className="mt-8 bg-neutral-900 text-neutral-100 border-t border-neutral-800 dark:text-indigo-100"
         >
             <div className="flex flex-col justify-center items-center gap-10 py-10 max-w-4xl lg:grid lg:grid-cols-2 lg:justify-between lg:items-start lg:px-0 lg:mx-auto">
                 <section className="flex flex-col items-center gap-6 text-center lg:text-start lg:items-start max-w-xs">
                     <span className="text-lg font-bold">
-                        Thanks for getting here!
+                        {t.thanks}
                     </span>
                     <p className="leading-7">
-                        If you liked what you saw you can reach out to me.
+                        {t.reach_out}
                     </p>
                     <div className="flex gap-5">
                         <a
@@ -98,7 +103,7 @@ const Footer = () => {
                 >
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="name">
-                            Name
+                            {t.name.label}
                         </label>
                         <input
                             className="text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300"
@@ -110,19 +115,19 @@ const Footer = () => {
                     </div>
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="subject">
-                            Subject
+                            Email
                         </label>
                         <input
                             className="text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300"
-                            name="subject"
-                            id="subject"
-                            type="text"
+                            name="email"
+                            id="email"
+                            type="email"
                             required
                         />
                     </div>
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="message">
-                            Message
+                            {t.message}
                         </label>
                         <textarea
                             className="text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300"
@@ -136,7 +141,7 @@ const Footer = () => {
                         className="py-2 px-3 mt-2 bg-indigo-100 self-center rounded text-neutral-800 font-bold lg:self-start dark:hover:bg-violet-300"
                         type="submit"
                     >
-                        Send
+                        {t.submit}
                     </button>
                 </form>
             </div>
