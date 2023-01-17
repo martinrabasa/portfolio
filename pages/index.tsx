@@ -45,12 +45,12 @@ const Home = () => {
             <Header />
 
             <main className="w-full max-w-4xl mx-auto">
-                <section className="max-w-2xl text-center flex flex-col items-center gap-10 mt-20 mx-auto">
+                <section className="max-w-2xl text-center flex flex-col items-center gap-10 px-4 mt-20 mx-auto">
                     <div className="flex flex-col items-center gap-3 text-3xl font-bold md:text-5xl dark:text-indigo-100">
                         <h1>{`${t.greeting} `} <span className="text-blue-400 dark:text-violet-300">{t.name.first}</span>. 👋</h1>
                         <span>{t.occupation}</span>
                     </div>
-                    <p className="text-lg leading-8 px-3 sm:px-8 md:px-0">{t.p1}</p>
+                    <p className="text-lg leading-8">{t.p1}</p>
                     <div className="flex gap-6">
                         <a
                             className="hover:text-neutral-700 dark:hover:text-violet-300"
@@ -86,7 +86,7 @@ const Home = () => {
                         </a>
                     </div>
                 </section>
-                <section id="projects" className="grid grid-cols-1 gap-y-16 items-start place-items-center mx-3 mt-10 pt-10 md:grid-cols-2 lg:grid-cols-3 lg:mx-0">
+                <section id="projects" className="grid grid-cols-1 gap-y-16 gap-x-7 items-start place-items-center px-4 mt-10 pt-10 md:grid-cols-2 lg:grid-cols-3 lg:mx-0">
                     {t.projects.projects &&
                         t.projects.projects.map((project) => (
                             <Project
@@ -101,11 +101,11 @@ const Home = () => {
                         ))}
                 </section>
                 <section
-                    className="flex flex-col items-center text-center gap-6 mt-10 pt-10"
+                    className="flex flex-col items-center text-center gap-6 px-4 mt-10 pt-10"
                     id="skills"
                 >
                     <h2 className="text-2xl font-bold">{t.skills.label}</h2>
-                    <p className="max-w-lg px-4 leading-7">{t.skills.description}</p>
+                    <p className="max-w-lg leading-7">{t.skills.description}</p>
                     <div className="grid grid-cols-3 gap-8 justify-center my-10 place-items-center text-neutral-900 dark:text-neutral-200 md:grid-cols-4 max-w-md">
                         <div title="CSS">
                             <svg

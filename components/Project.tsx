@@ -18,7 +18,7 @@ const Project = ({
     tags,
 }: ProjectProps) => {
     return (
-        <article className="flex flex-col gap-4 max-w-2xs font-light">
+        <article className="flex flex-col gap-4 max-w-xl font-light">
             <a
                 aria-label="Project image"
                 href={`https://${url}`}
@@ -29,8 +29,8 @@ const Project = ({
                 <Image
                     className="shadow-sm"
                     src={`/img/${image}`}
-                    height={220}
-                    width={320}
+                    height={420}
+                    width={640}
                     alt="Project website preview"
                 />
             </a>

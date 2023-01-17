@@ -23,7 +23,7 @@ const Footer = () => {
     return (
         <footer
             id="contact"
-            className="mt-8 bg-neutral-900 text-neutral-100 border-t border-neutral-800 dark:text-indigo-100"
+            className="mt-8 bg-neutral-900 px-4 text-neutral-100 border-t border-neutral-800 dark:text-indigo-100"
         >
             <div className="flex flex-col justify-center items-center gap-10 py-10 max-w-4xl lg:grid lg:grid-cols-2 lg:justify-between lg:items-start lg:px-0 lg:mx-auto">
                 <section className="flex flex-col items-center gap-6 text-center lg:text-start lg:items-start max-w-xs">
@@ -99,7 +99,7 @@ const Footer = () => {
                     method="POST"
                     data-netlify="true"
                     name="contacto"
-                    className="flex flex-col gap-4 text-sm w-full px-8 max-w-lg"
+                    className="flex flex-col gap-4 text-sm w-full max-w-md"
                 >
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="name">

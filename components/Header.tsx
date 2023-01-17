@@ -51,7 +51,7 @@ const Header = () => {
                     </ul>
                 </nav>
             </div>
-            <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-4 sm:gap-6 mr-4">
                 {/* <select className="bg-transparent cursor-pointer hidden lg:block" onChange={(e) => changeLanguage(e.target.value)} defaultValue={router.locale}>
                     <option value="es">Español</option>
                     <option value="en">English</option>
@@ -100,7 +100,7 @@ const Header = () => {
                     </button>
                 )}
                 <button
-                    className={`ml-auto mr-4 self-end hamburger hamburger__3dy sm:mr-8 lg:hidden ${
+                    className={`ml-auto self-end hamburger hamburger__3dy lg:hidden ${
                         isNavOpen ? "is_active" : ""
                     }`}
                     type="button"
