@@ -97,6 +97,7 @@ const Footer = () => {
                 </section>
                 <form
                     name="contact"
+                    method="POST"
                     data-netlify="true"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
                 >
