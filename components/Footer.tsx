@@ -113,7 +113,7 @@ const Footer = () => {
                     method="POST"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
                     data-netlify="true"
-
+                    action="/"
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
