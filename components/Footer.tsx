@@ -20,6 +20,19 @@ const Footer = () => {
         setShowingToast(true);
     };
 
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.target as HTMLFormElement);
+
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData as any).toString(),
+        })
+            .then(() => console.log("Form successfully submitted"))
+            .catch((error) => alert(error));
+    };
+
     return (
         <footer
             id="contact"
@@ -97,11 +110,9 @@ const Footer = () => {
                 </section>
                 <form
                     name="contact"
-                    method="POST"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
-                    data-netlify-honeypot="bot-field"
                     data-netlify="true"
-                    action="/success"
+                    onSubmit={handleSubmit}
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
@@ -146,24 +157,6 @@ const Footer = () => {
                     >
                         {t.submit}
                     </button>
-                </form>
-                 <form name="test" action="/success" method="POST" data-netlify="true">
-                    <input type="hidden" name="form-name" value="test" />
-                    <p>
-                        <label htmlFor="yourname">Your Name:</label>
-                        <input type="text" name="name" id="yourname" />
-                    </p>
-                    <p>
-                        <label htmlFor="youremail">Your Email: </label>{' '}
-                        <input type="email" name="email" id="youremail" />
-                    </p>
-                    <p>
-                        <label htmlFor="yourmessage">Message: </label>
-                        <textarea name="message" id="yourmessage"></textarea>
-                    </p>
-                    <p>
-                        <button type="submit">Send</button>
-                    </p>
                 </form>
             </div>
 
