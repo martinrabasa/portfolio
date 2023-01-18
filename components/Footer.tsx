@@ -20,21 +20,6 @@ const Footer = () => {
         setShowingToast(true);
     };
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        console.log(new URLSearchParams(formData as any).toString())
-
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData as any).toString(),
-        })
-            .then(() => console.log("Form successfully submitted"))
-            .catch((error) => alert(error));
-    };
-
     return (
         <footer
             id="contact"
@@ -115,7 +100,6 @@ const Footer = () => {
                     method="POST"
                     data-netlify="true"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
-                    onSubmit={handleSubmit}
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
