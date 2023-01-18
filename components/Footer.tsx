@@ -98,8 +98,9 @@ const Footer = () => {
                 <form
                     name="contact"
                     method="POST"
-                    data-netlify="true"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
+                    netlify-honeypot="bot-field"
+                    data-netlify="true"
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
