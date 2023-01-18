@@ -1,14 +1,14 @@
 import { useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
 import { useRouter } from "next/router";
-import t from "../locales/en";
+import en from "../locales/en";
 import es from "../locales/es";
 
 const Footer = () => {
     const [toastMessage, setToastMessage] = useState<string>("");
     const [showingToast, setShowingToast] = useState<boolean>(false);
-    /* const { locale } = useRouter();
-    const t = locale === "es" ? es : en; */
+    const { locale } = useRouter();
+    const t = locale === "es" ? es : en;
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
@@ -19,19 +19,6 @@ const Footer = () => {
         setToastMessage(message);
         setShowingToast(true);
     };
-
-    /* const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const formData = new FormData(event.target as HTMLFormElement);
-        console.log(formData)
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData as any).toString(),
-        })
-            .then(() => console.log("Form successfully submitted"))
-            .catch((error) => alert(error));
-    }; */
 
     return (
         <footer
