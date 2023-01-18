@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-import t from "../locales/en";
+import en from "../locales/en";
 import es from "../locales/es";
 import Project from "../components/Project";
 import Header from "../components/Header";
@@ -11,8 +11,8 @@ import Footer from "../components/Footer";
 const Home = () => {
     const [scrollPosition, setSrollPosition] = useState<number>(0);
     const [showToTopBtn, setShowToTopBtn] = useState<boolean>(false);
-    /* const { locale } = useRouter();
-    const t = locale === "es" ? es : en; */
+    const { locale } = useRouter();
+    const t = locale === "es" ? es : en;
 
     const handleToTopBtn = () => {
         const position = window.pageYOffset;

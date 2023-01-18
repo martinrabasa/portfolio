@@ -2,18 +2,18 @@ import { useState } from "react";
 import { useTheme } from "../utils/ThemeProvider";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import t from "../locales/en";
+import en from "../locales/en";
 import es from "../locales/es";
 
 const Header = () => {
     const { setLightTheme, setDarkTheme, theme } = useTheme();
     const [isNavOpen, toggleNav] = useState<boolean>(false);
-    /* const router = useRouter();
+    const router = useRouter();
     const t = router.locale === "es" ? es : en;
 
     const changeLanguage = (locale: string) => {
         router.push('/', '/', { locale: locale })
-    } */
+    }
 
     return (
         <header className="flex justify-between max-w-4xl mx-auto font-bold py-6">
