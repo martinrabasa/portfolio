@@ -20,7 +20,7 @@ const Footer = () => {
         setShowingToast(true);
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    /* const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
         console.log(formData)
@@ -31,7 +31,7 @@ const Footer = () => {
         })
             .then(() => console.log("Form successfully submitted"))
             .catch((error) => alert(error));
-    };
+    }; */
 
     return (
         <footer
@@ -110,9 +110,10 @@ const Footer = () => {
                 </section>
                 <form
                     name="contact"
+                    method="POST"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
                     data-netlify="true"
-                    onSubmit={handleSubmit}
+
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
