@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
 import { useRouter } from "next/router";
@@ -19,21 +18,6 @@ const Footer = () => {
     const toggleToast = (message: string) => {
         setToastMessage(message);
         setShowingToast(true);
-    };
-
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-
-        const myForm = event.target;
-        const formData = new FormData(myForm);
-        
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData as any).toString(),
-        })
-            .then(() => console.log("Form successfully submitted"))
-            .catch((error) => alert(error));
     };
 
     return (
@@ -113,9 +97,10 @@ const Footer = () => {
                 </section>
                 <form
                     name="contact"
+                    method="POST"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
+                    data-netlify-honeypot="bot-field"
                     data-netlify="true"
-                    onSubmit={handleSubmit}
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
@@ -160,6 +145,18 @@ const Footer = () => {
                     >
                         {t.submit}
                     </button>
+                </form>
+                <form method="POST" name="test" data-netlify="true">
+                    <input type="hidden" name="form-name" value="test" />
+                    <p>
+                        <label>Name <input type="text" name="name" /></label>
+                    </p>
+                    <p>
+                        <label>Email <input type="email" name="email" /></label>
+                    </p>
+                    <p>
+                        <button type="submit">Send</button>
+                    </p>
                 </form>
             </div>
 
