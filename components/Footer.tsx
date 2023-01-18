@@ -101,6 +101,7 @@ const Footer = () => {
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
                     data-netlify-honeypot="bot-field"
                     data-netlify="true"
+                    action="/success"
                 >
                     <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
@@ -145,18 +146,6 @@ const Footer = () => {
                     >
                         {t.submit}
                     </button>
-                </form>
-                <form method="POST" name="test" data-netlify="true">
-                    <input type="hidden" name="form-name" value="test" />
-                    <p>
-                        <label>Name <input type="text" name="name" /></label>
-                    </p>
-                    <p>
-                        <label>Email <input type="email" name="email" /></label>
-                    </p>
-                    <p>
-                        <button type="submit">Send</button>
-                    </p>
                 </form>
             </div>
 
