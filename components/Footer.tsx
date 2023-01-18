@@ -1,14 +1,14 @@
 import { useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
 import { useRouter } from "next/router";
-import en from "../locales/en";
+import t from "../locales/en";
 import es from "../locales/es";
 
 const Footer = () => {
     const [toastMessage, setToastMessage] = useState<string>("");
     const [showingToast, setShowingToast] = useState<boolean>(false);
-    const { locale } = useRouter();
-    const t = locale === "es" ? es : en;
+    /* const { locale } = useRouter();
+    const t = locale === "es" ? es : en; */
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);

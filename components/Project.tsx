@@ -26,7 +26,7 @@ const Project = ({
                 rel="noreferrer"
                 className="rounded overflow-hidden"
             >
-                <Image
+                <img
                     className="shadow-sm"
                     src={`/img/${image}`}
                     height={420}
