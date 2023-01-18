@@ -1,24 +1,84 @@
 import { useState } from "react";
 import * as Toast from "@radix-ui/react-toast";
 import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import en from "../locales/en";
 import es from "../locales/es";
 
+type ToastType = {
+    duration: number,
+    message: string,
+    status: boolean,
+}
+
 const Footer = () => {
-    const [toastMessage, setToastMessage] = useState<string>("");
     const [showingToast, setShowingToast] = useState<boolean>(false);
+    const [toast, setToast] = useState<ToastType | null>(null);
     const { locale } = useRouter();
     const t = locale === "es" ? es : en;
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
-        toggleToast(t.clipboard);
-    };
-
-    const toggleToast = (message: string) => {
-        setToastMessage(message);
+        setToast({
+            duration: 2000,
+            message: t.clipboard,
+            status: true,
+        })
         setShowingToast(true);
     };
+
+    const emailSchema = Yup.object().shape({
+        name: Yup.string()
+            .required(t.email_form.name.required)
+            .min(2, t.email_form.name.min)
+            .max(100, t.email_form.name.max),
+        email: Yup.string()
+            .required(t.email_form.email.required)
+            .email(t.email_form.email.email),
+        message: Yup.string()
+            .required(t.email_form.message.required)
+            .min(2, t.email_form.message.min)
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            email: '',
+            message: ''
+        },
+        validationSchema: emailSchema,
+        onSubmit: (values, { resetForm }) => {
+            fetch('https://formsubmit.co/ajax/7157d1d62cc22f5322bbc83fcd72c3eb', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: values.name,
+                    email: values.email,
+                    message: values.message, 
+                    _subject: "A new email has been sent through your website."}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                resetForm();
+                setToast({
+                    message: t.email_form.status.success, 
+                    duration: 2000,
+                    status: true}); 
+                setShowingToast(true);
+            })
+            .catch(error => {
+                setToast({
+                    message: t.email_form.status.success, 
+                    duration: 4000, 
+                    status: false,})
+                setShowingToast(true);
+            }); 
+        }
+    })
 
     return (
         <footer
@@ -97,82 +157,116 @@ const Footer = () => {
                 </section>
                 <form
                     name="contact"
-                    method="POST"
                     className="flex flex-col gap-4 text-sm w-full max-w-md"
-                    data-netlify="true"
+                    onSubmit={formik.handleSubmit}
                 >
-                    <input type="hidden" name="form-name" value="contact" />
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="name">
                             {t.name.label}
                         </label>
                         <input
-                            className="text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300"
+                            {...formik.getFieldProps('name')}
+                            className={`text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300
+                                        ${formik.errors.name && formik.touched.name ? "outline outline-1 outline-red-500" : ""}`}
                             name="name"
                             id="name"
                             type="text"
                             required
                         />
+                        {formik.errors.name && formik.touched.name &&
+                                <span className="text-red-500 text-sm" aria-label={formik.errors.name}>{formik.errors.name}</span>}
                     </div>
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="subject">
                             Email
                         </label>
                         <input
-                            className="text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300"
+                            {...formik.getFieldProps('email')}
+                            className={`text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300
+                                        ${formik.errors.email && formik.touched.email ? "outline outline-1 outline-red-500" : ""}`}
                             name="email"
                             id="email"
                             type="email"
                             required
                         />
+                        {formik.errors.email && formik.touched.email &&
+                                <span className="text-red-500 text-sm" aria-label={formik.errors.email}>{formik.errors.email}</span>}
                     </div>
                     <div className="flex flex-col gap-2">
                         <label className="font-bold" htmlFor="message">
                             {t.message}
                         </label>
                         <textarea
-                            className="text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300"
+                            {...formik.getFieldProps('message')}
+                            className={`text-neutral-800 bg-white px-2 py-1.5 rounded focus:outline focus:outline-2 focus:outline-blue-400 dark:focus:outline-violet-300
+                                        ${formik.errors.message && formik.touched.message ? "outline outline-1 outline-red-500" : ""}`}
                             name="message"
                             id="message"
                             rows={5}
                             required
                         ></textarea>
+                        {formik.errors.message && formik.touched.message &&
+                                <span className="text-red-500 text-sm" aria-label={formik.errors.message}>{formik.errors.message}</span>}
                     </div>
+                    <input type="text" name="_honey" className="hidden"></input>
                     <button
-                        className="py-2 px-3 mt-2 bg-indigo-100 self-center rounded text-neutral-800 font-bold lg:self-start dark:hover:bg-violet-300"
+                        className="py-2 px-3 mt-2 bg-indigo-100 jutify-center self-center rounded text-neutral-800 font-bold lg:self-start dark:hover:bg-violet-300"
+                        disabled={formik.isSubmitting || !formik.isValid || (Object.keys(formik.touched).length === 0 && formik.touched.constructor === Object)}
                         type="submit"
                     >
-                        {t.submit}
+                        {formik.isSubmitting ? 
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            className="animate-spin h-5 w-5"
+                            viewBox="0 0 24 24">
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                className="opacity-25"
+                            ></circle>
+                            <path
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                className="opacity-75"
+                            ></path>
+                            </svg>
+                        : t.submit}
                     </button>
                 </form>
             </div>
-
-            <Toast.Provider duration={2000}>
-                <Toast.Root
-                    className={`flex items-center gap-10 py-4 px-5 mt-3 mr-3 bg-green-400 shadow text-neutral-800 font-medium rounded z-10`}
-                    open={showingToast}
-                    onOpenChange={setShowingToast}
-                >
-                    <Toast.Title>{toastMessage}</Toast.Title>
-                    <Toast.Close>
-                        <svg
-                            className="w-6 h-6 hover:text-neutral-600"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={1.5}
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                            />
-                        </svg>
-                    </Toast.Close>
-                </Toast.Root>
-                <Toast.Viewport className="fixed top-0 right-0" />
-            </Toast.Provider>
+            
+            {toast && 
+                <Toast.Provider duration={toast.duration}>
+                    <Toast.Root
+                        className={`flex items-center gap-10 py-4 px-5 mt-3 mr-3 shadow text-neutral-800 font-medium rounded z-10
+                                    ${toast.status ? "bg-green-400" : "bg-red-400"}`}
+                        open={showingToast}
+                        onOpenChange={setShowingToast}
+                    >
+                        <Toast.Title>{toast.message}</Toast.Title>
+                        <Toast.Close>
+                            <svg
+                                className="w-6 h-6 hover:text-neutral-600"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </Toast.Close>
+                    </Toast.Root>
+                    <Toast.Viewport className="fixed top-0 right-0" />
+                </Toast.Provider>}
         </footer>
     );
 };

@@ -92,4 +92,23 @@ export default {
             },
         ],
     },
+    email_form: {
+        name: {
+            required: "Introduce tu nombre.",
+            min: "El nombre debe tener entre 2 y 100 caracteres.",
+            max: "El nombre debe tener entre 2 y 100 caracteres.",
+        },
+        email: {
+            required: "Introduce un email.",
+            email: "El email ingresado no es valido.",
+        },
+        message: {
+            required: "Introduce un mensaje.",
+            min: "El mensaje debe tener mas de 2 caracteres.",
+        },
+        status: {
+            success: "El email ha sido enviado",
+            error: "Ha ocurrido un error al enviar el email",
+        },
+    },
 };
