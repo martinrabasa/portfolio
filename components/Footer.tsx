@@ -112,7 +112,7 @@ const Footer = () => {
                         </a>
                         <a
                             className="hover:text-neutral-300 dark:hover:text-violet-300"
-                            href="https://github.com/astrank"
+                            href="https://github.com/martinrabasa"
                             target="_blank"
                             rel="noreferrer"
                             aria-label="Martin's LinkedIn"
