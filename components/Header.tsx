@@ -78,11 +78,11 @@ const Header = () => {
                             </a>
                         </li>
                         <li className="dark:hover:text-violet-300 lg:hidden">
-                            <select name="" className="bg-transparent cursor-pointer">
-                                <option onClick={() => changeLanguage("es")}>
+                            <select name="" className="bg-transparent cursor-pointer" defaultValue={router.locale}>
+                                <option value={"es"} onClick={() => changeLanguage("es")}>
                                     Español
                                 </option>
-                                <option onClick={() => changeLanguage("en")}>
+                                <option value={"en"} onClick={() => changeLanguage("en")}>
                                     English
                                 </option>
                             </select>
