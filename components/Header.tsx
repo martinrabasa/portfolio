@@ -12,26 +12,38 @@ const Header = () => {
 
     useEffect(() => {
         const html = document.querySelector("html");
-        
+
         // Disable scroll when nav is open
         if (html) {
             html.style.overflow = isNavOpen ? "hidden" : "auto";
         }
-    }, [isNavOpen]); 
+    }, [isNavOpen]);
 
     const changeLanguage = (locale: string) => {
         router.push('/', '/', { locale: locale })
+        console.log("asd")
     }
 
     return (
         <header className="max-w-4xl mx-auto">
             <div className="flex mx-4 font-bold py-6 gap-6 flex-row-reverse justify-between">
                 <div className="flex items-center gap-4">
+                    <select className="bg-transparent cursor-pointer hidden lg:block" defaultValue={router.locale} name="langSelect">
+                        <option value={"es"} onClick={() => changeLanguage("es")}>
+                            <button onClick={() => changeLanguage("es")}>
+                                Español
+                            </button>
+                        </option>
+                        <option value={"en"} onClick={() => changeLanguage("en")}>
+                            <button onClick={() => changeLanguage("en")}>
+                                English
+                            </button>
+                        </option>
+                    </select>
                     <ThemeSwitcher />
                     <button
-                        className={`ml-auto hamburger hamburger__3dy lg:hidden ${
-                            isNavOpen ? "is_active" : ""
-                        }`}
+                        className={`ml-auto hamburger hamburger__3dy lg:hidden ${isNavOpen ? "is_active" : ""
+                            }`}
                         type="button"
                         onClick={() => setIsNavOpen(!isNavOpen)}
                         aria-label="Menu"
@@ -49,8 +61,8 @@ const Header = () => {
                 >
                     <ul id="primary-navigation" className={`items-center gap-6
                                     ${isNavOpen ?
-                                        "fixed flex inset-0 w-full h-screen mt-18 py-6 z-10 overflow-scroll bg-neutral-100 border-t border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800 flex-col lg:flex-row"
-                                        : "hidden lg:flex"}`}>
+                            "fixed flex inset-0 w-full h-screen mt-18 py-6 z-10 overflow-scroll bg-neutral-100 border-t border-neutral-200 dark:bg-neutral-900 dark:border-neutral-800 flex-col lg:flex-row"
+                            : "hidden lg:flex"}`}>
                         <li className="dark:hover:text-violet-300">
                             <a
                                 onClick={() => setIsNavOpen(false)}
@@ -68,6 +80,20 @@ const Header = () => {
                             <a onClick={() => setIsNavOpen(false)} href="#contact">
                                 {t.contact}
                             </a>
+                        </li>
+                        <li className="dark:hover:text-violet-300 lg:hidden">
+                            <select name="" className="bg-transparent cursor-pointer">
+                                <option>
+                                    <button onClick={() => changeLanguage("es")}>
+                                        Español
+                                    </button>
+                                </option>
+                                <option>
+                                    <button onClick={() => changeLanguage("en")}>
+                                        English
+                                    </button>
+                                </option>
+                            </select>
                         </li>
                     </ul>
                     <Link className="text-blue-400 dark:text-violet-300" href="/" aria-label="Home">
