@@ -21,7 +21,7 @@ const Header = () => {
 
     const changeLanguage = (locale: string) => {
         router.push('/', '/', { locale: locale })
-        console.log("asd")
+        setIsNavOpen(false);
     }
 
     return (
@@ -30,14 +30,10 @@ const Header = () => {
                 <div className="flex items-center gap-4">
                     <select className="bg-transparent cursor-pointer hidden lg:block" defaultValue={router.locale} name="langSelect">
                         <option value={"es"} onClick={() => changeLanguage("es")}>
-                            <button onClick={() => changeLanguage("es")}>
-                                Español
-                            </button>
+                            Español
                         </option>
                         <option value={"en"} onClick={() => changeLanguage("en")}>
-                            <button onClick={() => changeLanguage("en")}>
-                                English
-                            </button>
+                            English
                         </option>
                     </select>
                     <ThemeSwitcher />
@@ -83,15 +79,11 @@ const Header = () => {
                         </li>
                         <li className="dark:hover:text-violet-300 lg:hidden">
                             <select name="" className="bg-transparent cursor-pointer">
-                                <option>
-                                    <button onClick={() => changeLanguage("es")}>
-                                        Español
-                                    </button>
+                                <option onClick={() => changeLanguage("es")}>
+                                    Español
                                 </option>
-                                <option>
-                                    <button onClick={() => changeLanguage("en")}>
-                                        English
-                                    </button>
+                                <option onClick={() => changeLanguage("en")}>
+                                    English
                                 </option>
                             </select>
                         </li>
