@@ -28,11 +28,11 @@ const Header = () => {
         <header className="max-w-4xl mx-auto">
             <div className="flex mx-4 font-bold py-6 gap-6 flex-row-reverse justify-between">
                 <div className="flex items-center gap-4">
-                    <select className="bg-transparent cursor-pointer hidden lg:block" defaultValue={router.locale} name="langSelect">
-                        <option value={"es"} onClick={() => changeLanguage("es")}>
+                    <select className="bg-transparent cursor-pointer hidden lg:block" value={router.locale} onChange={(e) => changeLanguage(e.target.value)}>
+                        <option value={"es"}>
                             Español
                         </option>
-                        <option value={"en"} onClick={() => changeLanguage("en")}>
+                        <option value={"en"}>
                             English
                         </option>
                     </select>
@@ -78,11 +78,11 @@ const Header = () => {
                             </a>
                         </li>
                         <li className="dark:hover:text-violet-300 lg:hidden">
-                            <select name="" className="bg-transparent cursor-pointer" defaultValue={router.locale}>
-                                <option value={"es"} onClick={() => changeLanguage("es")}>
+                            <select name="" className="bg-transparent cursor-pointer" value={router.locale} onChange={(e) => changeLanguage(e.target.value)}>
+                                <option value={"es"}>
                                     Español
                                 </option>
-                                <option value={"en"} onClick={() => changeLanguage("en")}>
+                                <option value={"en"}>
                                     English
                                 </option>
                             </select>
