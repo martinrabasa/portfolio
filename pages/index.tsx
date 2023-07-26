@@ -35,12 +35,20 @@ const Home = () => {
     return (
         <div className="relative text-neutral-800 bg-neutral-100 dark:bg-neutral-900 dark:text-indigo-100 min-h-screen">
             <Head>
+                <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+                <link rel="manifest" href="favicon/site.webmanifest" />
+                <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5" />
+                <meta name="msapplication-TileColor" content="#da532c" />
+                <meta name="theme-color" content="#ffffff" />
+
                 <title>{`${t.name.first} ${t.name.last} — Developer`}</title>
                 <meta name="description" content="Portfolio" />
-                <link
+                {/* <link
                     rel="icon"
                     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>"
-                />
+                /> */}
             </Head>
 
             <Header />
@@ -112,12 +120,12 @@ const Home = () => {
             </main>
 
             {showToTopBtn &&
-                <button 
-                    className="fixed rounded-full p-2 bottom-4 right-4 bg-blue-400 shadow z-10 lg:right-10 lg:bottom-10 dark:text-neutral-800 dark:bg-indigo-100 dark:hover:bg-violet-300" 
-                    onClick={() => { window.scrollTo({top: 0, left: 0, behavior: 'smooth'}) }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
-                        </svg>
+                <button
+                    className="fixed rounded-full p-2 bottom-4 right-4 bg-blue-400 shadow z-10 lg:right-10 lg:bottom-10 dark:text-neutral-800 dark:bg-indigo-100 dark:hover:bg-violet-300"
+                    onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75" />
+                    </svg>
                 </button>}
 
             <Footer />
