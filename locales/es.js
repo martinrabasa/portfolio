@@ -25,7 +25,7 @@ export default {
             {
                 image: "vero-metelico.jpg",
                 name: "blog",
-                url: "veronicametelico.com",
+                url: "veronicametelico.netlify.app",
                 github: "https://github.com/martinrabasa/vero-metelico",
                 tags: [
                     "react",
